@@ -9,15 +9,17 @@ const getFilteredCharacters = (characters) => {
 
 export default function getFilteredCharactersFromServer(inputValue, searchParametr) {
   return async (dispatch, getState) => {
+    const currentPage = getState().pageCounterReducer.charactersPage
     try {
-      const currentPage = getState().pageCounterReducer.charactersPage
       const response = await fetch(
         `https://rickandmortyapi.com/api/character/?page=${currentPage}&${searchParametr}=${inputValue}`
       )
       const json = await response.json()
       dispatch(getFilteredCharacters(json.results))
     } catch {
-      alert('Wrong parametrs')
+      const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
+      const json = await response.json()
+      dispatch(getFilteredCharacters(json.results))
     }
   }
 }
