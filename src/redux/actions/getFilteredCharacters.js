@@ -1,4 +1,5 @@
 import { FETCH_FILTERED_CHARACTERS } from '../types'
+import errorImage from '../../img/error_image.jpg'
 
 const getFilteredCharacters = (characters) => {
   return {
@@ -17,9 +18,7 @@ export default function getFilteredCharactersFromServer(inputValue, searchParame
       const json = await response.json()
       dispatch(getFilteredCharacters(json.results))
     } catch {
-      const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
-      const json = await response.json()
-      dispatch(getFilteredCharacters(json.results))
+      dispatch(getFilteredCharacters([{ image: errorImage, name: 'Wrong paremets' }]))
     }
   }
 }
