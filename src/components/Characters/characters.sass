@@ -2,6 +2,8 @@
   display: flex
   flex-direction: row
   align-items: center
+  justify-content: center
+  width: 100%
 
 .characters-card
   width: 80%
@@ -9,3 +11,7 @@
   flex-direction: row
   justify-content: space-around
   flex-wrap: wrap
+
+@media screen and ( max-width: 600px )
+  .characters-main-content 
+    flex-direction: column 
