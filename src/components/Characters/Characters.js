@@ -30,6 +30,7 @@ class Characters extends Component {
       this.props.getFilteredCharacters(this.props.filter.inputValue, this.props.filter.type)
     } else {
       this.props.getCharacters()
+      console.log('привет')
     }
   }
 
